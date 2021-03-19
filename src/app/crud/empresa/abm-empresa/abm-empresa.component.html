@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-12">
+      <button class="btn btn-success" data-toggle="modal" data-target="#empresaModal">
+        Create
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Denominación</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Email</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>aaa</td>
+            <td>@mdo</td>
+            <td>
+              <button class="btn btn-warning mr-5" data-toggle="modal" data-target="#empresaModal">
+                Edit
+              </button>
+              <button class="btn btn-danger" (click)="delete($event, 'id')">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<modal-empresa></modal-empresa>

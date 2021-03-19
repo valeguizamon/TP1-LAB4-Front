@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//Pages
-import { AppComponent } from './app.component';
+import { AbmEmpresaComponent } from './crud/empresa/abm-empresa/abm-empresa.component';
+import { AbmNoticiaComponent } from './crud/noticia/abm-noticia/abm-noticia.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IndexComponent } from './pages/index/index.component';
 import { NoticiaComponent } from './pages/noticia/noticia.component';
@@ -15,6 +15,8 @@ const routes: Routes = [
   { path: ":empresa/home", component: HomeComponent } ,
   { path: ":empresa/noticia/:id", component: NoticiaComponent },
   { path: ":empresa/search", component: SearchComponent },
+  { path: "crud/empresa", component: AbmEmpresaComponent },
+  { path: "crud/noticia", component: AbmNoticiaComponent },
   { path: '', redirectTo: 'index', pathMatch: 'full' },
   { path: "**", component: Page404Component }
 ];

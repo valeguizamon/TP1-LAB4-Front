@@ -11,6 +11,10 @@ import { NoticiaComponent } from './pages/noticia/noticia.component';
 import { IndexComponent } from './pages/index/index.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AbmEmpresaComponent } from './crud/empresa/abm-empresa/abm-empresa.component';
+import { AbmNoticiaComponent } from './crud/noticia/abm-noticia/abm-noticia.component';
+import { ModalNoticiaComponent } from './crud/noticia/modal-noticia/modal-noticia.component';
+import { ModalEmpresaComponent } from './crud/empresa/modal-empresa/modal-empresa.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { FooterComponent } from './components/footer/footer.component';
     NoticiaComponent,
     IndexComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    AbmEmpresaComponent,
+    AbmNoticiaComponent,
+    ModalNoticiaComponent,
+    ModalEmpresaComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@ import { Empresa } from '../models/empresa'
 })
 export class EmpresaService {
 
-  direccion : string = '';
+  direccion : string = 'http://localhost:port/api/v1/empresa';
 
   constructor(private http: HttpClient) {}
 

@@ -8,7 +8,7 @@ import { Noticia } from '../models/noticia'
 })
 export class NoticiaService {
 
-  direccion : string = '';
+  direccion : string = 'http://localhost:port/api/v1/noticias';
 
   constructor(private http: HttpClient) {}
 
@@ -31,5 +31,5 @@ export class NoticiaService {
   delete(id:number){
     this.http.delete(this.direccion + id);
   }
-  
+
 }

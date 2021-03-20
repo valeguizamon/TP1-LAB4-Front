@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Empresa } from '../models/empresa'
 
@@ -8,29 +9,29 @@ import { Empresa } from '../models/empresa'
 })
 export class EmpresaService {
 
-  direccion : string = 'http://localhost:port/api/v1/empresa';
+  private direccion: string = 'http://localhost:8080/api/v1/empresas/';
 
-  constructor(private http: HttpClient) {}
 
-  getAll(){
-    this.http.get(this.direccion);
+  constructor(private http: HttpClient) { }
+
+
+  public getAll(): Observable<Empresa[]>{
+    return this.http.get<Empresa[]>(this.direccion);
   }
 
-  getOne(id:number){
-    this.http.get(this.direccion + id);
+  public getOne(id: number): Observable<Empresa>{
+    return this.http.get<Empresa>(`${this.direccion+id}`);
   }
 
-  post(empresa:Empresa){
-    this.http.post(this.direccion, empresa);
+  public post(empresa: Empresa): Observable<Empresa>{
+    return this.http.post<Empresa>(this.direccion, empresa);
   }
 
-  put(id:number, empresa:Empresa){
-    this.http.post(this.direccion + id, empresa);
+  public put(empresa: Empresa, id:number): Observable<Empresa>{
+    return this.http.put<Empresa>(`${this.direccion+id}`, empresa);
   }
 
-  delete(id:number){
-    this.http.delete(this.direccion + id);
+  public delete(id:number): any{
+    return this.http.delete<any>(`${this.direccion+id}`);
   }
-
 }
-

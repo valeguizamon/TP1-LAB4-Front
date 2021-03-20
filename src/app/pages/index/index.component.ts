@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 @Component({
   selector: 'app-index',
@@ -7,11 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  public list: Array<any> = new Array(5);
-  
-  constructor() { }
+  public list$: Observable<Empresa[]> 
+
+  constructor(private empresaSvc: EmpresaService) { }
 
   ngOnInit(): void {
+    this.list$ = this.empresaSvc.getAll();
   }
-
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 @Component({
   selector: 'app-abm-empresa',
@@ -7,16 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbmEmpresaComponent implements OnInit {
 
-  constructor() { }
+  public emp: Empresa;
+  public list$: Observable<Empresa[]> 
+
+  constructor(private empresaSvc: EmpresaService) { }
 
   ngOnInit(): void {
+    this.list$ = this.empresaSvc.getAll();
   }
 
-  delete(e: Event, id: string): void {
-    let resp:boolean = confirm('¿ Desea eliminar esta empresa ?');
+  public edit(item: Empresa): void{
+    this.emp = item;
+  }
 
+  public delete(e: Event, id: number): void {
+    e.preventDefault();
+    e.stopPropagation();
+    let resp:boolean = confirm('¿ Desea eliminar esta empresa ?');
     if(resp){
-      console.log('Eliminado');
+      this.empresaSvc.delete(id).subscribe(data=> console.log('Eliminado'), error=>console.error(error));
     }
   }
 }

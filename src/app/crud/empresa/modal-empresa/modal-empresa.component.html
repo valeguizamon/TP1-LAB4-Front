@@ -2,17 +2,70 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="empresaModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="empresaModalLabel">Formulario Empresa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()" #btnClose>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>modal-empresa works!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form [formGroup]="empForm" (ngSubmit)='onSave($event)' novalidate>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="email">Email</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="email">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="denominacion">Denominacion</label>
+              <input type="text" formControlName="denominacion" class="form-control" placeholder="Denominacion">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="telefono">Teléfono</label>
+              <input type="text" formControlName="telefono" class="form-control" placeholder="Teléfono">
+            </div>
+          </div>
+          <!--  -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inicio">Horaio de apertura</label>
+              <input type="time" formControlName="inicio" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cierre">Horaio de cierre</label>
+              <input type="time" formControlName="cierre" class="form-control">
+            </div>
+          </div>
+          <!--  -->
+          <div class="form-row">
+            <label for="telefono">Domicilio</label>
+            <div class="form-group col-md-12">
+              <input type="email" formControlName="domicilio" class="form-control" placeholder="Domicilio">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="telefono">Latitud</label>
+              <input type="number" formControlName="lat" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="telefono">Longitud</label>
+              <input type="number" formControlName="lon" class="form-control">
+            </div>
+          </div>
+          <!--  -->
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="telefono">Quienes somos : </label>
+              <textarea class="form-control" rows="4" formControlName="quienSomos" placeholder="¿ Quienes somos?"></textarea>
+            </div>
+          </div>
+          <!--  -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <button type="reset" class="btn btn-outline-secondary btn-block" (click)="resetForm()">Reset</button>
+            </div>
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

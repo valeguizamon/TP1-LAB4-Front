@@ -10,10 +10,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of list">
+          <tr *ngFor="let item of list$ | async">
             <td> Nombre empresa </td>
             <td>
-              <a [routerLink]="['/pepe/home']" routerLinkActive="router-link-active">URL PAGINA HOME</a>
+              <a [routerLink]="[ '/', item.denominacion,'home' ]">URL PAGINA HOME</a>
             </td>
           </tr>
         </tbody>

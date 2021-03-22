@@ -28,7 +28,7 @@ export class AbmEmpresaComponent implements OnInit {
     e.stopPropagation();
     let resp:boolean = confirm('¿ Desea eliminar esta empresa ?');
     if(resp){
-      this.empresaSvc.delete(id).subscribe(data=> console.log('Eliminado'), error=>console.error(error));
+      this.empresaSvc.delete(id).subscribe(data=> console.log('Empresa eliminada'), error=>console.error(error));
     }
   }
 }

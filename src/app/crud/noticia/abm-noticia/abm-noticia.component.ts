@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Noticia } from 'src/app/models/noticia';
+import { NoticiaService } from 'src/app/services/noticia.service';
 
 @Component({
   selector: 'app-abm-noticia',
@@ -7,16 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbmNoticiaComponent implements OnInit {
 
-  constructor() { }
+  public not: Noticia;
+  public list$: Observable<Noticia[]>
+
+  constructor(private noticiaSvc: NoticiaService) { }
 
   ngOnInit(): void {
+    this.list$ = this.noticiaSvc.getAll();
   }
 
-  delete(e: Event, id: string): void {
-    let resp:boolean = confirm('¿ Desea eliminar esta empresa ?');
+  public edit(item: Noticia): void{
+    this.not = item;
+  }
 
+  public delete(e: Event, id: number): void {
+    e.preventDefault();
+    e.stopPropagation();
+    let resp:boolean = confirm('¿ Desea eliminar esta noticia ?');
     if(resp){
-      console.log('Eliminado');
+      this.noticiaSvc.delete(id).subscribe(data=> console.log('Noticia eliminada'), error=>console.error(error));
     }
   }
 }

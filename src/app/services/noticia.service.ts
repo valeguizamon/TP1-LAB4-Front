@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Noticia } from '../models/noticia'
 
@@ -8,28 +9,28 @@ import { Noticia } from '../models/noticia'
 })
 export class NoticiaService {
 
-  direccion : string = 'http://localhost:port/api/v1/noticias';
+  private direccion: string = 'http://localhost:8080/api/v1/noticias/';
 
   constructor(private http: HttpClient) {}
 
-  getAll(){
-    this.http.get(this.direccion);
+  public getAll(): Observable<Noticia[]>{
+    return this.http.get<Noticia[]>(this.direccion);
   }
 
-  getOne(id:number){
-    this.http.get(this.direccion + id);
+  public getOne(id: number): Observable<Noticia>{
+    return this.http.get<Noticia>(`${this.direccion+id}`);
   }
 
-  post(noticia:Noticia){
-    this.http.post(this.direccion, noticia);
+  public post(noticia: Noticia): Observable<Noticia>{
+    return this.http.post<Noticia>(this.direccion, noticia);
   }
 
-  put(id:number, noticia:Noticia){
-    this.http.post(this.direccion + id, noticia);
+  public put(noticia: Noticia, id:number): Observable<Noticia>{
+    return this.http.put<Noticia>(`${this.direccion+id}`, noticia);
   }
 
-  delete(id:number){
-    this.http.delete(this.direccion + id);
+  public delete(id:number): any{
+    return this.http.delete<any>(`${this.direccion+id}`);
   }
-
+  
 }

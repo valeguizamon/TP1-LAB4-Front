@@ -14,23 +14,25 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Titulo</th>
+            <th scope="col">Título</th>
             <th scope="col">Fecha</th>
-            <th scope="col">Publicado</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Publicada</th>
+            <th scope="col">Empresa</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>aaa</td>
+          <tr *ngFor="let item of list$ | async">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.titulo}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.publicada}}</td>
+            <!-- ACA ABAJO IRIA EMPRESA  -->
+            <td></td>
             <td>
-              <button class="btn btn-warning mr-5" data-toggle="modal" data-target="#noticiaModal">
+              <button class="btn btn-warning mr-5" data-toggle="modal" data-target="#empresaModal" (click)="edit(item)">
                 Edit
               </button>
-              <button class="btn btn-danger" (click)="delete($event, 'id')">
+              <button class="btn btn-danger" (click)="delete($event, item.id)">
                 Delete
               </button>
             </td>
@@ -41,4 +43,4 @@
   </div>
 </div>
 
-<modal-noticia></modal-noticia>
+<modal-noticia [item]=not></modal-noticia>

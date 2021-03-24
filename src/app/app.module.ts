@@ -17,6 +17,8 @@ import { AbmNoticiaComponent } from './crud/noticia/abm-noticia/abm-noticia.comp
 import { ModalNoticiaComponent } from './crud/noticia/modal-noticia/modal-noticia.component';
 import { ModalEmpresaComponent } from './crud/empresa/modal-empresa/modal-empresa.component';
 
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +39,10 @@ import { ModalEmpresaComponent } from './crud/empresa/modal-empresa/modal-empres
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    EditorModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

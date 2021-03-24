@@ -14,48 +14,50 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
   @ViewChild('btnClose') btnClose : ElementRef;
   @Input() item: Noticia;
 
-  public notiForm: FormGroup;
+  public noticiaForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private noticiaSvc: NoticiaService) {
-    this.buildFormNot();
+    this.buildFormNoticia();
   }
 
   ngOnChanges(): void {
-    this.buildFormNot(this.item);
+    this.buildFormNoticia(this.item);
   }
 
   ngOnInit(): void {
   }
 
-  private buildFormNot(noti: Noticia = null): void {
-    if(noti){
-      this.notiForm.patchValue({
-        titulo: noti.titulo,
-        resumen: noti.resumen,
-        imagenNoti: noti.imagenNoticia,
-        contenidoHtml: noti.contenidoHtml,
-        publicada: noti.publicada,
-        fecha: noti.fecha,
+  private buildFormNoticia(noticia: Noticia = null): void {
+    if(noticia){
+      this.noticiaForm.patchValue({
+        titulo: noticia.titulo,
+        resumen: noticia.resumen,
+        imagenNoticia: noticia.imagenNoticia,
+        contenidoHtml: noticia.contenidoHtml,
+        publicada: noticia.publicada,
+        fecha: noticia.fecha,
+        empresa: noticia.Empresa.id
       });
     } else {
-      this.notiForm = this.formBuilder.group({
+      this.noticiaForm = this.formBuilder.group({
         titulo: ['', Validators.required],
         resumen: ['', Validators.required],
-        imagenNot: ['', Validators.required],
+        imagenNoti: ['', Validators.required],
         contenidoHtml: ['', Validators.required],
         publicada: ['', Validators.required],
         fecha: ['', Validators.required],
+        empresa: ['', Validators.required],
       });
     }
   }
 
   public onSave(e: Event): void {
     e.preventDefault();
-    console.log(this.notiForm.value);
+    console.log(this.noticiaForm.value);
     if(this.item && this.item.id) {
-      this.noticiaSvc.put(this.notiForm.value, this.item.id).subscribe(data=>console.log(data));
+      this.noticiaSvc.put(this.noticiaForm.value, this.item.id).subscribe(data=>console.log(data));
     } else {
-      this.noticiaSvc.post(this.notiForm.value).subscribe(data=>console.log(data));
+      this.noticiaSvc.post(this.noticiaForm.value).subscribe(data=>console.log(data));
     }
     this.closeModal();
   }
@@ -67,7 +69,7 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
   }
 
   public resetForm(): void {
-    this.notiForm.reset();
+    this.noticiaForm.reset();
   }
 
 }

@@ -1,7 +1,10 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Empresa } from 'src/app/models/empresa';
 
 import { Noticia } from 'src/app/models/noticia';
+import { EmpresaService } from 'src/app/services/empresa.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
 
 @Component({
@@ -14,17 +17,21 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
   @ViewChild('btnClose') btnClose : ElementRef;
   @Input() item: Noticia;
 
+  public empresas$: Observable<Empresa[]>;
   public noticiaForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private noticiaSvc: NoticiaService) {
+  constructor(private formBuilder: FormBuilder, private noticiaSvc: NoticiaService, private empSvc: EmpresaService) {
     this.buildFormNoticia();
   }
 
   ngOnChanges(): void {
+    console.log(this.item);
+    
     this.buildFormNoticia(this.item);
   }
 
   ngOnInit(): void {
+    this.empresas$ = this.empSvc.getAll();
   }
 
   private buildFormNoticia(noticia: Noticia = null): void {
@@ -32,19 +39,19 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
       this.noticiaForm.patchValue({
         titulo: noticia.titulo,
         resumen: noticia.resumen,
-        imagenNoticia: noticia.imagenNoticia,
+        img: noticia.imagenNoticia,
         contenidoHtml: noticia.contenidoHtml,
-        publicada: noticia.publicada,
+        publicada: noticia.publicado,
         fecha: noticia.fecha,
-        empresa: noticia.Empresa.id
+        empresa: noticia.empresa.id
       });
     } else {
       this.noticiaForm = this.formBuilder.group({
         titulo: ['', Validators.required],
         resumen: ['', Validators.required],
-        imagenNoti: ['', Validators.required],
+        img: ['', Validators.required],
         contenidoHtml: ['', Validators.required],
-        publicada: ['', Validators.required],
+        publicada: [false, Validators.required],
         fecha: ['', Validators.required],
         empresa: ['', Validators.required],
       });

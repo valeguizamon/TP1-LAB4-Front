@@ -28,7 +28,7 @@
             </div>
             <div class="form-group col-md-12">
               <label for="imgNoticia">Imagen</label>
-              <input type="file" formControlName="imagenNoticia" class="form-control">
+              <input type="file" formControlName="img" class="form-control">
             </div>
           </div>
           <!--  -->
@@ -42,10 +42,9 @@
             <div class="form-group col-md-6">
               <label for="selectEmpresa">Empresa</label>
               <select class="form-control" id="selectEmpresa" formControlName="empresa">
-                <!--  ng for -->
-                <!-- Hace una peticion get desde el modal.component.ts hacia el back y trae todas las empresas -->
-                <option value="empresa.id">empresa.nombre</option>
-                <!--  ng for end-->
+                <option  *ngFor="let emp of empresas$ | async" [ngValue]="emp.id">
+                  {{emp.denominacion}}
+                </option>
               </select>
             </div>
           </div>
@@ -55,7 +54,7 @@
                 <!-- TinyMCE  -->
                 <editor 
                     apiKey="32ltys60vk91fhvh8zjtx40ux8xcqp8ck1ygtphxoxjlpfeu"
-                    [Init]="{
+                    [init]="{
                         base_url: '/tinymce',
                         height: 250,
                         menubar: false,

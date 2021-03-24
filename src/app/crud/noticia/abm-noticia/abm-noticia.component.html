@@ -17,7 +17,7 @@
             <th scope="col">Título</th>
             <th scope="col">Fecha</th>
             <th scope="col">Publicada</th>
-            <th scope="col">Empresa</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -26,10 +26,8 @@
             <td>{{item.titulo}}</td>
             <td>{{item.fecha}}</td>
             <td>{{item.publicada}}</td>
-            <!-- ACA ABAJO IRIA EMPRESA  -->
-            <td></td>
             <td>
-              <button class="btn btn-warning mr-5" data-toggle="modal" data-target="#empresaModal" (click)="edit(item)">
+              <button class="btn btn-warning mr-5" data-toggle="modal" data-target="#noticiaModal" (click)="edit(item)">
                 Edit
               </button>
               <button class="btn btn-danger" (click)="delete($event, item.id)">

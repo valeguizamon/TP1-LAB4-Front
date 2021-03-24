@@ -1,3 +1,6 @@
+import { Empresa } from "./empresa";
+
+
 export interface Noticia {
 
     id : number,
@@ -5,8 +8,8 @@ export interface Noticia {
     resumen: string,
     imagenNoticia: string,
     contenidoHtml: string,
-    publicada: boolean,
+    publicado: boolean,
     fecha: Date, // Fecha en la que se publica la noticia.
-    Empresa : {id : number},
+    empresa : Empresa,
 
 }

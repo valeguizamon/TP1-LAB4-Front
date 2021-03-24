@@ -9,7 +9,7 @@ import { Noticia } from '../models/noticia'
 })
 export class NoticiaService {
 
-  private direccion: string = 'http://localhost:8080/api/v1/noticias/';
+  private direccion: string = 'http://localhost:8080/api/v1/crud/noticia/';
 
   constructor(private http: HttpClient) {}
 

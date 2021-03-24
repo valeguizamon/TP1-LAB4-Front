@@ -9,7 +9,7 @@ import { Empresa } from '../models/empresa'
 })
 export class EmpresaService {
 
-  private direccion: string = 'http://localhost:8080/api/v1/empresas/';
+  private direccion: string = 'http://localhost:8080/api/v1/crud/empresa/';
 
   constructor(private http: HttpClient) { }
 

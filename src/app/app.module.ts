@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-
+import { GoogleMapsModule } from '@angular/google-maps';
 import { AppRoutingModule } from './app-routing.module';
+import {NgxPaginationModule} from 'ngx-pagination'
+
+//Components
 import { AppComponent } from './app.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -16,7 +19,6 @@ import { AbmEmpresaComponent } from './crud/empresa/abm-empresa/abm-empresa.comp
 import { AbmNoticiaComponent } from './crud/noticia/abm-noticia/abm-noticia.component';
 import { ModalNoticiaComponent } from './crud/noticia/modal-noticia/modal-noticia.component';
 import { ModalEmpresaComponent } from './crud/empresa/modal-empresa/modal-empresa.component';
-
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
@@ -40,7 +42,9 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     ReactiveFormsModule,
     FormsModule,
     EditorModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GoogleMapsModule,
+    NgxPaginationModule
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]

@@ -10,18 +10,19 @@
   </div>
   <div class="row">
     <div class="col-12">
+      <h5>Ordenado por {{sort}} de forma {{order}}</h5>
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Título</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Publicada</th>
+            <th scope="col" (click)="sortBy('id')">ID</th>
+            <th scope="col" (click)="sortBy('titulo')">Título</th>
+            <th scope="col" (click)="sortBy('fecha')">Fecha</th>
+            <th scope="col" (click)="sortBy('publicado')">Publicada</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of list$ | async">
+          <tr *ngFor="let item of noticias?.content">
             <th scope="row">{{item.id}}</th>
             <td>{{item.titulo}}</td>
             <td>{{item.fecha}}</td>
@@ -37,6 +38,12 @@
           </tr>
         </tbody>
       </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination d-flex justify-content-center">
+          <button class="btn" type="button" name="button" [disabled]="isFirst" (click)="previous()">Previous</button>
+          <button class="btn" type="button" name="button" [disabled]="isLast" (click)="next()">Next</button>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

@@ -56,10 +56,28 @@ export class ModalEmpresaComponent implements OnInit, OnChanges {
       });
     }
   }
+  get denominacion(){return this.empForm.get("denominacion");}
+  get telefono(){return this.empForm.get("telefono");}
+  get inicio(){return this.empForm.get("inicio");}
+  get cierre(){return this.empForm.get("cierre");}
+  get quienSomos(){return this.empForm.get("quienSomos");}
+  get lat(){return this.empForm.get("lat");}
+  get lon(){return this.empForm.get("lon");}
+  get domicilio(){return this.empForm.get("domicilio");}
+  get email(){return this.empForm.get("email");}
 
   public onSave(e: Event): void {
     e.preventDefault();
-    console.log(this.empForm.value);
+    let inicio = this.empForm.get('inicio').value;
+    let cierre = this.empForm.get('cierre').value;
+    if(inicio.length == 5){
+      inicio = inicio+":00"
+    }
+    if(inicio.cierre == 5){
+      cierre = cierre+":00"
+    }
+    this.empForm.get('inicio').setValue(inicio);
+    this.empForm.get('cierre').setValue(cierre);
     if(this.item && this.item.id) {
       this.empresaSvc.put(this.empForm.value, this.item.id).subscribe(data=>console.log(data));
     } else {

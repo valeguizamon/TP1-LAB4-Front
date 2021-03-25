@@ -4,16 +4,16 @@
     <div class="col 4">
       <table class="table">
         <thead>
-          <tr> 
+          <tr>
             <th scope="col">Empresa</th>
             <th scope="col">Ver página</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of list$ | async">
-            <td> Nombre empresa </td>
+          <tr *ngFor="let empresa of list$ | async">
+            <td> {{empresa.denominacion}} </td>
             <td>
-              <a [routerLink]="[ '/', item.denominacion,'home' ]">URL PAGINA HOME</a>
+              <a [routerLink]="[ '/', empresa.id,'home' ]">URL PAGINA HOME</a>
             </td>
           </tr>
         </tbody>

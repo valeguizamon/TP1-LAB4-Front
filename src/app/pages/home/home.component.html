@@ -5,7 +5,7 @@
     <div class="col-12">
       <section id="carousel">
         <div id="noticiaCarusel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
+          <ol class="carousel-indicators"  *ngFor="let noticia of lastNoticias$ | async">
             <li data-target="#noticiaCarusel" data-slide-to="0" class="active"></li>
             <li data-target="#noticiaCarusel" data-slide-to="1"></li>
             <li data-target="#noticiaCarusel" data-slide-to="2"></li>
@@ -13,11 +13,11 @@
             <li data-target="#noticiaCarusel" data-slide-to="4"></li>
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let item of list; let i = index" [ngClass]="{active: i==0}">
-              <img src="../../../assets/img/img.png" class="d-block w-100" alt="../../../assets/img/img.png">
+            <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index" [ngClass]="{active: i==0}">
+              <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100">
               <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h5>{{noticia.titulo}}</h5>
+                <p>{{noticia.resumen}}.</p>
                 <a [routerLink]="['/pepe/noticia/1']">Noticia</a>
               </div>
             </div>
@@ -34,23 +34,30 @@
       </section>
     </div>
   </div>
-  <div class="row">
+  <div class="row quienSomos">
     <div class="col-12">
       <section>
-        <h1>¿ Quienes somos ?</h1>
+        <h1 class="display-3">¿ QUIENES SOMOS ?</h1>
         <p>
-          Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          {{empresa?.quienSomos}}
         </p>
       </section>
     </div>
   </div>
-  <div class="row">
+  <div class="row dondeEstamos">
     <div class="col-12">
       <section>
-        <h1>¿ Donde estamos ?</h1>
-        <div>MAPA</div>
-      </section>
-    </div>
+        <h1 class="display-3">¿ DONDE ESTAMOS ?</h1>
+          <google-map #map width="100%"
+          height="500px"
+          [center]="position"
+          [zoom]="zoom">
+          <map-marker #marker="mapMarker" [position] = "position">
+          </map-marker>
+          <map-info-window #mapinfo [options]="infoWindows"></map-info-window>
+        </google-map>
+    </section>
   </div>
+</div>
 </div>
 <app-footer></app-footer>

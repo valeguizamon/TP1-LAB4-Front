@@ -25,8 +25,6 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    console.log(this.item);
-    
     this.buildFormNoticia(this.item);
   }
 
@@ -36,11 +34,12 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
 
   private buildFormNoticia(noticia: Noticia = null): void {
     if(noticia){
+      console.log(noticia)
       this.noticiaForm.patchValue({
         titulo: noticia.titulo,
         resumen: noticia.resumen,
         img: noticia.imagenNoticia,
-        contenidoHtml: noticia.contenidoHtml,
+        contenidoHtml: noticia.content,
         publicada: noticia.publicado,
         fecha: noticia.fecha,
         empresa: noticia.empresa.id
@@ -49,7 +48,7 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
       this.noticiaForm = this.formBuilder.group({
         titulo: ['', Validators.required],
         resumen: ['', Validators.required],
-        img: ['', Validators.required],
+        img: [null, Validators.required],
         contenidoHtml: ['', Validators.required],
         publicada: [false, Validators.required],
         fecha: ['', Validators.required],
@@ -57,14 +56,36 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
       });
     }
   }
+  get contenidoHtml(){return this.noticiaForm.get("contenidoHtml");}
+  get publicada(){return this.noticiaForm.get("publicada");}
+  get resumen(){return this.noticiaForm.get("resumen");}
+  get titulo(){return this.noticiaForm.get("titulo");}
+  get empresa(){return this.noticiaForm.get("empresa");}
+  get img(){return this.noticiaForm.get("img");}
+  get fecha(){return this.noticiaForm.get("fecha");}
 
   public onSave(e: Event): void {
     e.preventDefault();
-    console.log(this.noticiaForm.value);
+    if(this.noticiaForm.get('img').value == null){
+    const file = new File([],'');
+    this.noticiaForm.get('img').setValue(file)
+    }
+    //Pasar de String a Date
+    const date = new Date(this.noticiaForm.get('fecha').value)
+    this.noticiaForm.get('fecha').setValue(date)
+    //Enviar Form Data para que funcione la foto
+    const formData = new FormData();
+    formData.append('content',this.noticiaForm.get('contenidoHtml').value)
+    formData.append('publicado',this.noticiaForm.get('publicada').value)
+    formData.append('archivo',this.noticiaForm.get('img').value)
+    formData.append('empresa',this.noticiaForm.get('empresa').value)
+    formData.append('titulo',this.noticiaForm.get('titulo').value)
+    formData.append('resumen',this.noticiaForm.get('resumen').value)
+    formData.append('fecha',this.noticiaForm.get('fecha').value)
     if(this.item && this.item.id) {
-      this.noticiaSvc.put(this.noticiaForm.value, this.item.id).subscribe(data=>console.log(data));
+      this.noticiaSvc.putWithFoto(formData, this.item.id).subscribe(data=>console.log(data));
     } else {
-      this.noticiaSvc.post(this.noticiaForm.value).subscribe(data=>console.log(data));
+      this.noticiaSvc.postWithFoto(formData).subscribe(data=>console.log(data));
     }
     this.closeModal();
   }
@@ -73,10 +94,17 @@ export class ModalNoticiaComponent implements OnInit, OnChanges {
     this.item = null;
     this.resetForm();
     this.btnClose.nativeElement.click();
+
   }
 
   public resetForm(): void {
     this.noticiaForm.reset();
+  }
+
+  onFileSelect(event) {
+    const file = event.target.files[0];
+    this.noticiaForm.get('img').setValue(file);
+    console.log(file)
   }
 
 }

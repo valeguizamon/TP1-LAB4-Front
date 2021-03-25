@@ -11,7 +11,7 @@ import { EmpresaService } from 'src/app/services/empresa.service';
 })
 export class IndexComponent implements OnInit {
 
-  public list$: Observable<Empresa[]> 
+  public list$: Observable<Empresa[]>
 
   constructor(private empresaSvc: EmpresaService) { }
 

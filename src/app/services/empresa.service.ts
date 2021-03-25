@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -17,6 +17,10 @@ export class EmpresaService {
     return this.http.get<Empresa[]>(this.direccion);
   }
 
+  public getAllPaginate(page:number, size: number,sort: string,order: string): Observable<any>{
+    return this.http.get<any>(this.direccion+`/pagina?page=${page}&size=${size}&sort=${sort},${order}`);
+  }
+
   public getOne(id: number): Observable<Empresa>{
     return this.http.get<Empresa>(`${this.direccion+id}`);
   }
@@ -32,5 +36,5 @@ export class EmpresaService {
   public delete(id:number): any{
     return this.http.delete<any>(`${this.direccion+id}`);
   }
-  
+
 }

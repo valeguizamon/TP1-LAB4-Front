@@ -5,7 +5,7 @@
     <div class="col-12">
       <section id="carousel">
         <div id="noticiaCarusel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators"  *ngFor="let noticia of lastNoticias$ | async">
+          <ol class="carousel-indicators" *ngFor="let noticia of lastNoticias$ | async">
             <li data-target="#noticiaCarusel" data-slide-to="0" class="active"></li>
             <li data-target="#noticiaCarusel" data-slide-to="1"></li>
             <li data-target="#noticiaCarusel" data-slide-to="2"></li>
@@ -13,8 +13,10 @@
             <li data-target="#noticiaCarusel" data-slide-to="4"></li>
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index" [ngClass]="{active: i==0}">
-              <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100">
+            <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index"
+              [ngClass]="{active: i==0}">
+              <!-- <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100"> -->
+              <img src='../../../assets/img/img.png' class="d-block w-100">
               <div class="carousel-caption d-none d-md-block">
                 <h5>{{noticia.titulo}}</h5>
                 <p>{{noticia.resumen}}.</p>
@@ -34,30 +36,28 @@
       </section>
     </div>
   </div>
-  <div class="row quienSomos">
+  <div class="row">
     <div class="col-12">
-      <section>
+      <section id="quienSomos" class="my-5">
         <h1 class="display-3">¿ QUIENES SOMOS ?</h1>
-        <p>
+        <p class="mt-5 ml-3 text-justify">
           {{empresa?.quienSomos}}
         </p>
       </section>
     </div>
   </div>
-  <div class="row dondeEstamos">
+  <hr>
+  <div class="row">
     <div class="col-12">
-      <section>
-        <h1 class="display-3">¿ DONDE ESTAMOS ?</h1>
-          <google-map #map width="100%"
-          height="500px"
-          [center]="position"
-          [zoom]="zoom">
-          <map-marker #marker="mapMarker" [position] = "position">
+      <section id="dondeEstamos" class="mb-5">
+        <h1 class="display-3 mb-5">¿ DONDE ESTAMOS ?</h1>
+        <google-map #map width="100%" height="500px" [center]="position" [zoom]="zoom">
+          <map-marker #marker="mapMarker" [position]="position">
           </map-marker>
           <map-info-window #mapinfo [options]="infoWindows"></map-info-window>
         </google-map>
-    </section>
+      </section>
+    </div>
   </div>
-</div>
 </div>
 <app-footer></app-footer>

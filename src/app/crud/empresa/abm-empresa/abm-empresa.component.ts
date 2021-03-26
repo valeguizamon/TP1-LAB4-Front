@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa.service';
 
@@ -48,7 +49,7 @@ export class AbmEmpresaComponent implements OnInit {
     e.stopPropagation();
     let resp:boolean = confirm('¿ Desea eliminar esta empresa ?');
     if(resp){
-      this.empresaSvc.delete(id).subscribe(data=> console.log('Empresa eliminada'), error=>console.error(error));
+      this.empresaSvc.delete(id).subscribe(data => console.log('Empresa eliminada', data), error => console.error(error));
     }
   }
 
@@ -71,5 +72,4 @@ export class AbmEmpresaComponent implements OnInit {
     console.log(this.order);
     this.getAllEmpresas()
   }
-
 }

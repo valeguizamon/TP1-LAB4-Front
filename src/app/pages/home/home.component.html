@@ -21,7 +21,7 @@
               <div class="info-carousel carousel-caption d-none d-md-block">
                 <h1>{{noticia.titulo}}</h1>
                 <p>{{noticia.resumen}}.</p>
-                <a [routerLink]="['/',idEmpresa,'noticia',noticia.id]">></a>
+                <a [routerLink]="['/',idEmpresa,'noticia',noticia.id]" class="stretched-link"></a>
               </div>
             </div>
           </div>
@@ -58,6 +58,9 @@
           <map-info-window #mapinfo [options]="infoWindows"></map-info-window>
         </google-map>
       </section>
+    </div>
+    <div class="col-12 mb-3">
+      <a href="mailto:{{empresa?.email}}">Contactar por correo</a>
     </div>
   </div>
 </div>

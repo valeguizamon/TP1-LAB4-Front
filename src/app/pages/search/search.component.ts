@@ -20,9 +20,9 @@ export class SearchComponent implements OnInit {
   p: number = 1;
 
   constructor(private route: ActivatedRoute,private noticiaSvc: NoticiaService,private router: Router) {
-  this.empresaId = this.route.snapshot.params['empresa'];
-  this.route.queryParams.subscribe(e => this.query = e.query)
-  this.searchNoticias()
+    this.empresaId = this.route.snapshot.params['empresa'];
+    this.route.queryParams.subscribe(e => this.query = e.query)
+    this.searchNoticias()
   }
 
   ngOnInit(): void {
@@ -32,8 +32,8 @@ export class SearchComponent implements OnInit {
     this.noticias$ = this.noticiaSvc.searchNoticiaByTituloOrResumen(this.query)
   }
 
-  goNoticia(idNoticia: number){
-    this.router.navigate([`${this.empresaId}/noticia/${idNoticia}`])
-  }
+  // goNoticia(idNoticia: number){
+  //   this.router.navigate([`${this.empresaId}/noticia/${idNoticia}`])
+  // }
 
 }

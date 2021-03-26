@@ -7,24 +7,7 @@
       <a class="navbar-brand" [routerLink]="[ '/', empresaId,'home' ]">{{empresa?.denominacion}}</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="[ '/', empresaId,'home' ]">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" [routerLink]="[ '/index' ]">Index</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          CRUD
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-          <li>
-            <a class="dropdown-item" [routerLink]="[ '/crud/empresa' ]">Empresa</a>
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <a class="dropdown-item" [routerLink]="[ '/crud/noticia' ]">Noticia</a>
-          </li>
-        </ul>
       </li>
     </ul>
     <form [formGroup]="searchForm" (ngSubmit)="searchNoticias()" class="form-inline my-2 my-lg-0">

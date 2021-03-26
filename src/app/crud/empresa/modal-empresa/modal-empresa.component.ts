@@ -73,11 +73,12 @@ export class ModalEmpresaComponent implements OnInit, OnChanges {
     if(inicio.length == 5){
       inicio = inicio+":00"
     }
-    if(inicio.cierre == 5){
+    if(cierre.length == 5){
       cierre = cierre+":00"
     }
     this.empForm.get('inicio').setValue(inicio);
     this.empForm.get('cierre').setValue(cierre);
+    console.log(this.empForm)
     if(this.item && this.item.id) {
       this.empresaSvc.put(this.empForm.value, this.item.id).subscribe(data=>console.log(data));
     } else {

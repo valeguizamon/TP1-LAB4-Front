@@ -5,22 +5,23 @@
     <div class="col-12">
       <section id="carousel">
         <div id="noticiaCarusel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators" *ngFor="let noticia of lastNoticias$ | async">
-            <li data-target="#noticiaCarusel" data-slide-to="0" class="active"></li>
-            <li data-target="#noticiaCarusel" data-slide-to="1"></li>
-            <li data-target="#noticiaCarusel" data-slide-to="2"></li>
-            <li data-target="#noticiaCarusel" data-slide-to="3"></li>
-            <li data-target="#noticiaCarusel" data-slide-to="4"></li>
+          <ol class="carousel-indicators">
+            <!-- <ng-container > -->
+              <li data-target="#noticiaCarusel" attr.data-slide-to="{{i}}" [ngClass]="{active: i==0}" *ngFor="let item of lastNoticias$ | async; let i = index"></li>
+            <!-- </ng-container> -->
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index"
-              [ngClass]="{active: i==0}">
-              <!-- <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100"> -->
-              <img src='../../../assets/img/img.png' class="d-block w-100">
+            <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index" [ngClass]="{active: i==0}">
+              <ng-container *ngIf="noticia.imgHashCode!=null; else noImg">
+                <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100" loading="lazy">
+              </ng-container>
+              <ng-template #noImg>
+                <img src='../../../assets/img/img.png' class="d-block w-100" loading="lazy">
+              </ng-template>
               <div class="carousel-caption d-none d-md-block">
                 <h5>{{noticia.titulo}}</h5>
                 <p>{{noticia.resumen}}.</p>
-                <a [routerLink]="['/pepe/noticia/1']">Noticia</a>
+                <a [routerLink]="['/',idEmpresa,'noticia',noticia.id]">Ver noticia</a>
               </div>
             </div>
           </div>

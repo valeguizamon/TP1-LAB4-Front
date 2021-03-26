@@ -8,18 +8,19 @@ import { Noticia } from 'src/app/models/noticia';
 //Servicios
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit,AfterViewInit {
+export class HomeComponent implements OnInit {
 
   public idEmpresa: number;
   public empresa: Empresa;
   public lastNoticias$: Observable<Noticia[]>;
+  public indicators: number;
 
   public list: Array<any> = new Array(5);
 
@@ -33,16 +34,13 @@ export class HomeComponent implements OnInit,AfterViewInit {
   center: google.maps.LatLngLiteral;
   zoom = 15;
   infoWindows: any;
-  constructor(private empresaSvc: EmpresaService, private noticiaSvc: NoticiaService, private route: ActivatedRoute) {
 
-  }
+  constructor(private empresaSvc: EmpresaService, private noticiaSvc: NoticiaService, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.idEmpresa = this.route.snapshot.params['empresa'];
     this.getEmpresa();
-    this.getLastNoticias();
-  }
-
-  ngAfterViewInit(): void {
+    this.lastNoticias$ = this.noticiaSvc.getLastFiveNoticias();
   }
 
   //Obtener empresa elegida
@@ -60,10 +58,6 @@ export class HomeComponent implements OnInit,AfterViewInit {
          '</div>'
       }
       this.infoWindow.open(this.marker)
-    })
+    });
   }
-  getLastNoticias(){
-    this.lastNoticias$ = this.noticiaSvc.getLastFiveNoticias()
-  }
-
 }

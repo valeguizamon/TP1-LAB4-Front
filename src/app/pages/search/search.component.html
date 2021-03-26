@@ -1,26 +1,31 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <div class="row my-5">
-        <div class="col-12">
-            <h2>Texto buscado: "{{query}}"</h2>
-        </div>
+  <div class="row my-5">
+    <div class="col-12">
+      <h2>Texto buscado: "{{query}}"</h2>
     </div>
-    <div class="row">
-        <div class="col-8">
-            <div class="wrapNoticia" *ngFor="let noticia of noticias$ | async | paginate: { itemsPerPage: 5, currentPage: p } "> <!-- NG-FOR -->
-              <div class="searched row">
-                  <img class="float-left" src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}'>
-                  <div class="searched-info">
-                    <p>{{noticia.titulo}}</p>
-                    <p>{{noticia.resumen}}</p>
-                    <p>{{noticia.fecha}}</p>
-                    <a (click)="goNoticia(noticia.id)" style="color:blue">Leer mas</a>
-                  </div>
-              </div>
-              <hr>
-            </div> <!-- NG-FOR END-->
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="wrapNoticia" *ngFor="let noticia of noticias$ | async | paginate: { itemsPerPage: 5, currentPage: p } ">
+        <div class="searched row">
+          <ng-container *ngIf="noticia.imgHashCode!=null; else noImg">
+            <img class="float-left" src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' loading="lazy">
+          </ng-container>
+          <ng-template #noImg>
+            <img class="float-left" src='../../../assets/img/img.png' loading="lazy">
+          </ng-template>
+          <div class="searched-info">
+            <p>{{noticia.titulo}}</p>
+            <p>{{noticia.resumen}}</p>
+            <p>{{noticia.fecha}}</p>
+            <a [routerLink]="[ '/', empresaId, 'noticia', noticia.id ]">Leer mas</a>
+          </div>
         </div>
+        <hr>
+      </div>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+  </div>
 </div>
 <app-footer></app-footer>

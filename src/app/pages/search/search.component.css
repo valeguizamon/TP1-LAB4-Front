@@ -1,9 +1,10 @@
-.searched img{
+div.container {
+  min-height: 80vh;
+}
+
+.searched img {
   width: 250px;
   height: 100px;
   margin-bottom: 2%;
   margin-right: 5%;
-}
-.searched-info a{
-  cursor: pointer;
 }

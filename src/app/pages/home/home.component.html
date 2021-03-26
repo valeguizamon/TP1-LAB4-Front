@@ -18,10 +18,10 @@
               <ng-template #noImg>
                 <img src='../../../assets/img/img.png' class="d-block w-100" loading="lazy">
               </ng-template>
-              <div class="carousel-caption d-none d-md-block">
-                <h5>{{noticia.titulo}}</h5>
+              <div class="info-carousel carousel-caption d-none d-md-block">
+                <h1>{{noticia.titulo}}</h1>
                 <p>{{noticia.resumen}}.</p>
-                <a [routerLink]="['/',idEmpresa,'noticia',noticia.id]">Ver noticia</a>
+                <a [routerLink]="['/',idEmpresa,'noticia',noticia.id]">></a>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
   <div class="row">
     <div class="col-12">
       <section id="quienSomos" class="my-5">
-        <h1 class="display-3">¿ QUIENES SOMOS ?</h1>
+        <h1 class="display-3">¿QUIENES SOMOS?</h1>
         <p class="mt-5 ml-3 text-justify">
           {{empresa?.quienSomos}}
         </p>
@@ -51,7 +51,7 @@
   <div class="row">
     <div class="col-12">
       <section id="dondeEstamos" class="mb-5">
-        <h1 class="display-3 mb-5">¿ DONDE ESTAMOS ?</h1>
+        <h1 class="display-3 mb-5">¿DONDE ESTAMOS?</h1>
         <google-map #map width="100%" height="500px" [center]="position" [zoom]="zoom">
           <map-marker #marker="mapMarker" [position]="position">
           </map-marker>

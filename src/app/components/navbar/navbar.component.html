@@ -1,19 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light  fixed-top border-bottom">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="[ '/', empresaId,'home' ]">{{empresa?.denominacion}}</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="[ '/index' ]">Index</a>
-      </li>
-    </ul>
-    <form [formGroup]="searchForm" (ngSubmit)="searchNoticias()" class="form-inline my-2 my-lg-0">
-      <input formControlName="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="container ">
+      <div class="nav-empresa">
+        <a class="navbar-brand h1 display-1 float-left" [routerLink]="[ '/', empresaId,'home' ]">{{empresa?.denominacion}}</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="[ '/index' ]">Index</a>
+            Telefono:<p class="h2 display-4"> {{empresa?.telefono}}</p>
+            <p class="lead">Horario: {{empresa?.inicio}} a {{empresa?.cierre}}</p>
+        </li>
+      </ul>
+      </div>
+    <div class="nav-form border-top">
+      <form [formGroup]="searchForm" (ngSubmit)="searchNoticias()" class="form-inline my-2 my-lg-0 float-right">
+        <input formControlName="search" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
     </div>
   </div>
 </nav>

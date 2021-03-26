@@ -1,0 +1,41 @@
+
+  .navbar{
+    background-color: rgb(255,255,255);
+  }
+.container{
+  display: inline;
+}
+.container ul a{
+  color:#21c2f8;
+}
+.nav-form{
+  margin-top: 15%;
+  padding: 3%;
+
+}
+.nav-empresa{
+  margin-bottom: 10%;
+}
+.nav-empresa a{
+  text-align: center;
+}
+.h1{
+  background-color: #21c2f8;
+  color: white;
+  font-size: 24px;
+  width: 20%;
+}
+.h2{
+  color:#21c2f8;
+}
+/* background-color: rgb(255,255,255,0.95); */
+@media (min-width: 900px) {
+  .navbar{
+    background-color: rgb(255,255,255,0.8);
+  }
+  .h1{
+    font-size: 60px;
+    width: auto;
+    padding: 2%;
+  }
+}

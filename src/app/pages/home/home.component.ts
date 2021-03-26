@@ -51,10 +51,10 @@ export class HomeComponent implements OnInit {
       this.center =  {lat: e.lat, lng:  e.lon}
       this.infoWindows = {
         content:'<div>'+
-         `<h4 class="display-6">${e.denominacion}</h4>`+
-         `<p style="color:#21c2f8;">Telefono: <strong style="color:black;">${e.telefono}</strong> </p>`+
-         `<p style="color:#21c2f8;">Domicilio: <strong style="color:black;">${e.domicilio}</strong></p>`+
-         `<p style="color:#21c2f8;">E-mail: <strong style="color:black;">${e.email}</strong></p>`+
+         `<h3 class="display-6">${e.denominacion}</h3>`+
+         `<p class="display-6 h6" style="color:#21c2f8;">Telefono: <strong style="color:black;font-weight: bold;">${e.telefono}</strong> </p>`+
+         `<p class="display-6 h6" style="color:#21c2f8;">Domicilio: <strong style="color:black;">${e.domicilio}</strong></p>`+
+         `<p class="display-6 h6" style="color:#21c2f8;">E-mail: <strong style="color:black;">${e.email}</strong></p>`+
          '</div>'
       }
       this.infoWindow.open(this.marker)

@@ -1,3 +1,32 @@
+.container{
+  margin-top: 20%;
+}
 section h1{
   color:#21c2f8;
+  font-weight: bold;
+  font-size: 24px;
+}
+.info-carousel{
+  background-color: rgb(73, 200, 245,0.7);
+  margin-bottom: 5%;
+}
+.info-carousel h1{
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 36px;
+}
+.info-carousel p{
+  color: white;
+}
+.info-carousel a{
+  color: white;
+  font-size: 36px;
+  margin-left: 80%;
+}
+@media (min-width: 1200px) {
+  section h1{
+    font-weight: bold;
+    font-size: 56px;
+  }
 }

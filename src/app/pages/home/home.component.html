@@ -13,7 +13,7 @@
           <div class="carousel-inner">
             <div class="carousel-item" *ngFor="let noticia of lastNoticias$ | async; let i = index" [ngClass]="{active: i==0}">
               <ng-container *ngIf="noticia.imgHashCode!=null; else noImg">
-                <img src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100" loading="lazy">
+                <img class="imgSearch" src='http://localhost:8080/api/v1/crud/noticia/uploads/noticia/img/{{noticia.id}}' class="d-block w-100" loading="lazy">
               </ng-container>
               <ng-template #noImg>
                 <img src='../../../assets/img/img.png' class="d-block w-100" loading="lazy">

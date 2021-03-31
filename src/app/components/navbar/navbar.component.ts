@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
     search: new FormControl('')
   });
   get search(){return this.searchForm.get('search')}
+  query: string;
 
   public empresa: Empresa;
   public empresaId: number;
@@ -26,11 +27,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.empresaId = this.route.snapshot.params['empresa'];
     if(this.empresaId != undefined){
-      this.empresaSvc.getOne(this.empresaId).subscribe( emp => this.empresa = emp, error => { 
+      this.empresaSvc.getOne(this.empresaId).subscribe( emp => this.empresa = emp, error => {
         this.router.navigate(['/error']);
         console.error(error);
       } );
-    } 
+    }
   }
 
   searchNoticias(){

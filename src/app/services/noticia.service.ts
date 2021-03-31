@@ -21,12 +21,12 @@ export class NoticiaService {
     return this.http.get<any[]>(this.direccion+`/pagina?page=${page}&size=${size}&sort=${sort},${order}`);
   }
 
-  public getLastFiveNoticias(): Observable<Noticia[]>{
-    return this.http.get<Noticia[]>(this.direccion+`/firstFive`);
+  public getLastFiveNoticias(id: number): Observable<Noticia[]>{
+    return this.http.get<Noticia[]>(this.direccion+`/${id}/firstFive`);
   }
 
-  public searchNoticiaByTituloOrResumen(query: string): Observable<Noticia[]>{
-    return this.http.get<Noticia[]>(this.direccion+`/search?query=${query}`)
+  public searchNoticiaByTituloOrResumen(id:number,query: string): Observable<Noticia[]>{
+    return this.http.get<Noticia[]>(this.direccion+`/${id}/search?query=${query}`)
   }
 
   public getOne(id: number): Observable<Noticia>{

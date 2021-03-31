@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.idEmpresa = this.route.snapshot.params['empresa'];
     this.getEmpresa();
-    this.lastNoticias$ = this.noticiaSvc.getLastFiveNoticias();
+    this.lastNoticias$ = this.noticiaSvc.getLastFiveNoticias(this.idEmpresa);
   }
 
   //Obtener empresa elegida
